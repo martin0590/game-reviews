@@ -4,9 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
+import { StartupCardType } from '@/types'
 
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
-  const { _createdAt, views, author: { id: authorId, name }, title, category, image, _id, description } = post
+const StartupCard = ({ post }: { post: StartupCardType }) => {
+  const { _createdAt, views, author: { _id: authorId, name }, title, category, image, _id, description } = post
 
   return (
     <li className='startup-card group'>
@@ -27,7 +28,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
           </Link>
 
           <Link
-            href={`/startup/${_id}`}
+            href={`/review/${_id}`}
           >
             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
           </Link>
@@ -46,7 +47,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
       </div>
 
       <Link
-        href={`/startup/${_id}`}
+        href={`/review/${_id}`}
       >
         <p className='startup_card_desc'>
           {description}
@@ -60,14 +61,14 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 
       <div className="flex-between mt-5 gap-3">
         <Link
-          href={`/?query=${category.toLowerCase()}`}
+          href={`/?query=${category?.toLowerCase()}`}
         >
           <p className="text-16-medium">{category}</p>
         </Link>
 
         <Button className='startup-card_btn' asChild>
           <Link
-            href={`/startup/${_id}`}
+            href={`/review/${_id}`}
           >
             Details
           </Link>
